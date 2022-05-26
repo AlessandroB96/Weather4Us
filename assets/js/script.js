@@ -1,18 +1,18 @@
-
-
 let button;
 let heading;
 let formatName;
 let saveArray = false;
 
+var savedBtns = JSON.parse(localStorage.getItem("Recent Searches")) || [];
+
 function startUpBtns() {
-    var btnContainer = document.querySelector("#cityBtns");
+    let btnContainer = document.querySelector("#cityBtns");
     
-    for ( var i = 0; i < savedBtns.length; i++) {
-        var buttonEl = document.createElement("button");
+    for ( let i = 0; i < savedBtns.length; i++) {
+        let buttonEl = document.createElement("button");
         buttonEl.className = "cityBtn searchBtn mw-100";
         buttonEl.textContent = savedBtns[i].name;
-        var btnInput = JSON.stringify(savedBtns[i].input);
+        let btnInput = JSON.stringify(savedBtns[i].input);
         buttonEl.setAttribute("data-input", btnInput);
         btnContainer.appendChild(buttonEl);
     }
@@ -27,7 +27,7 @@ function reset(event) {
 
 
 function search(event) {
-    var cityInput;
+    let cityInput;
     // If Recent Search Buttons selected, use their "Input" data, from savedBtns Input property
     if ($(this).text() !== "Search") {
         heading = $(this).text();
@@ -70,10 +70,10 @@ function search(event) {
             return response.json();
         })
         .then(function(data) {
-            var timeStamp = data.current.dt + data.timezone_offset + 18000;
-            var date = new Date(timeStamp * 1000);
-            var weekday = date.getDay();
-            var weekdayNamed;
+            let timeStamp = data.current.dt + data.timezone_offset + 18000;
+            let date = new Date(timeStamp * 1000);
+            let weekday = date.getDay();
+            let weekdayNamed;
             if (weekday === 0) { weekdayNamed = "Sunday";}
             if (weekday === 1) { weekdayNamed = "Monday";}
             if (weekday === 2) { weekdayNamed = "Tuesday";}
@@ -81,11 +81,11 @@ function search(event) {
             if (weekday === 4) { weekdayNamed = "Thursday";}
             if (weekday === 5) { weekdayNamed = "Friday";}
             if (weekday === 6) { weekdayNamed = "Saturday";}
-            var month = date.getMonth() + 1;
-            var day = date.getDate();
-            var year = date.getFullYear();
-            var hours = date.getHours();
-            var amPm;
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            let year = date.getFullYear();
+            let hours = date.getHours();
+            let amPm;
             if (hours === 12) {
                 amPm = "pm"
             } else if (hours > 12) {
@@ -95,17 +95,17 @@ function search(event) {
                 amPm = "am"
             }
             if (hours === 0) { hours = 12; }
-            var minutes = date.getMinutes();
+            let minutes = date.getMinutes();
                 if (minutes < 10) { minutes = "0" + minutes; }
 
-            var locationTime = "Where it is " + weekdayNamed + ", " + month + "/" + day + "/" + year + ", and the time is " + hours + ":" + minutes + " " + amPm;
+            let locationTime = "Where it is " + weekdayNamed + ", " + month + "/" + day + "/" + year + ", and the time is " + hours + ":" + minutes + " " + amPm;
             $("#date").text(locationTime).append();
 
             // Append Weather Icon
-            var sunrise = data.current.sunrise;
-            var sunset = data.current.sunset;
-            var weather = data.current.weather[0].main;
-            var weatherIcon;
+            let sunrise = data.current.sunrise;
+            let sunset = data.current.sunset;
+            let weather = data.current.weather[0].main;
+            let weatherIcon;
             if (weather === "Clouds") {weatherIcon = " ☁️"}
             if (weather === "Thunderstorm") {weatherIcon = " ⚡️"}
             if (weather === "Rain" || weather === "Drizzle") {weatherIcon = " 💧"}
@@ -117,25 +117,22 @@ function search(event) {
                 if (timeStamp < sunrise || timeStamp > sunset) { weatherIcon = " 🌑"
                 } else {weatherIcon = " ☀️"}
             }
-            // console.log("Sunrise: " + sunrise + ", Current Time: " + timeStamp + ", Sunset: " + sunset +);
             $("#city-name").text(heading + weatherIcon).append();
 
-            // Append Temperature
             // Convert Kelvin to Fahrenheit
-            var temp = (Math.round(((data.current.temp - 273.15) * 1.8 + 32) * 100)) / 100;
+            let temp = (Math.round(((data.current.temp - 273.15) * 1.8 + 32) * 100)) / 100;
             $("#city-temp").text("Temperature: " + temp + "°F").append();
 
-            // Append Wind Speed
             // Convert meter/sec to Miles/hour
-            var wind = (Math.round((data.current.wind_speed * 2.236494) * 10)) / 10;
+            let wind = (Math.round((data.current.wind_speed * 2.236494) * 10)) / 10;
             $("#city-wind").text("Wind: " + wind + " MPH").append();
 
             // Append Humidity
-            var humidity = (Math.round(data.current.humidity));
+            let humidity = (Math.round(data.current.humidity));
             $("#city-humid").text("Humidity: " + humidity + "%").append();
 
-            // Append UV Index with Specific Class for background color
-            var uvIndex = data.current.uvi;
+        
+            let uvIndex = data.current.uvi;
 
             $("#uvBtn").removeClass("uv-low uv-moderate uv-high uv-very-high uv-extreme");
             if (uvIndex <= 2.5) {
@@ -152,16 +149,16 @@ function search(event) {
             $("#uvBtn").text("UV Index: " + uvIndex);
 
             // 5 Day Forecast Loop
-            for (var i = 0; i < 5; i++) {
-                var cardId = "#day-" + [i+1];
+            for (let i = 0; i < 5; i++) {
+                let cardId = "#day-" + [i+1];
 
-                var dailyTimeStamp = data.daily[i].dt + data.timezone_offset + 18000;
-                var dailyDate = new Date(dailyTimeStamp * 1000);
-                var dailyWeekday = date.getDay() + i;
-                var dailyMonth = dailyDate.getMonth() + 1;
-                var dailyDay = dailyDate.getDate();
-                var dailyYear = dailyDate.getFullYear();
-                var finalDailyDate = dailyMonth + "/" + dailyDay + "/" + dailyYear;
+                let dailyTimeStamp = data.daily[i].dt + data.timezone_offset + 18000;
+                let dailyDate = new Date(dailyTimeStamp * 1000);
+                let dailyWeekday = date.getDay() + i;
+                let dailyMonth = dailyDate.getMonth() + 1;
+                let dailyDay = dailyDate.getDate();
+                let dailyYear = dailyDate.getFullYear();
+                let finalDailyDate = dailyMonth + "/" + dailyDay + "/" + dailyYear;
 
                 if (dailyWeekday === 0 || dailyWeekday === 7) { dailyWeekdayNamed = "Sunday";}
                 if (dailyWeekday === 1 || dailyWeekday === 8) { dailyWeekdayNamed = "Monday";}
@@ -174,8 +171,8 @@ function search(event) {
                 $(cardId).find(".card-weekday").text(dailyWeekdayNamed).append();
                 $(cardId).find(".card-date").text(finalDailyDate).append();
                 
-                var dailyWeather = data.daily[i].weather[0].main;
-                var dailyIcon;
+                let dailyWeather = data.daily[i].weather[0].main;
+                let dailyIcon;
                 if (dailyWeather === "Clouds") {dailyIcon = " ☁️"}
                 if (dailyWeather === "Thunderstorm") {dailyIcon = " ⚡️"}
                 if (dailyWeather === "Rain" || dailyWeather === "Drizzle") {dailyIcon = " 💧"}
@@ -188,28 +185,26 @@ function search(event) {
                 }
                 $(cardId).find(".card-icon").text(dailyIcon).append();
 
-                var dailyTemp = (Math.round(((data.daily[i].temp.day - 273.15) * 1.8 + 32) * 100)) / 100;
+                let dailyTemp = (Math.round(((data.daily[i].temp.day - 273.15) * 1.8 + 32) * 100)) / 100;
                 $(cardId).find(".card-temp").text("Temp: " + dailyTemp + "°F");
 
-                var dailyWind = (Math.round((data.daily[i].wind_speed * 2.236494) * 10)) / 10;
+                let dailyWind = (Math.round((data.daily[i].wind_speed * 2.236494) * 10)) / 10;
                 $(cardId).find(".card-wind").text("Wind: " + dailyWind + " MPH");
 
-                var dailyHumid = (Math.round(data.current.humidity));
+                let dailyHumid = (Math.round(data.current.humidity));
                 $(cardId).find(".card-humid").text("Humidity: " + dailyHumid + "%").append();
             }
-        // Append new recent search "City" buttons
-        // Save to localStorage
-        //Check if there are 10 or more entries, offer reset Once
+
         }).then(function(data){
             if (savedBtns.length < 10 && saveArray === true) {
-                var btnContainer = document.querySelector("#cityBtns");
-                var buttonEl = document.createElement("button");
+                let btnContainer = document.querySelector("#cityBtns");
+                let buttonEl = document.createElement("button");
                 buttonEl.className = "cityBtn mw-100 newSearchBtn";
                 buttonEl.textContent= heading;
                 buttonEl.setAttribute("data-input", cityInput);
                 btnContainer.appendChild(buttonEl);
                 $(".newSearchBtn").on("click", search);
-                var savedBtn = {
+                let savedBtn = {
                     name: heading,
                     nameCheck: formatName,
                     input: cityInput
@@ -220,8 +215,8 @@ function search(event) {
             } 
             if (savedBtns.length >= 10 && saveArray === true) {
                 $(".resetBtn").remove();
-                var btnContainer = document.querySelector("#cityBtns");
-                var buttonEl = document.createElement("button");
+                let btnContainer = document.querySelector("#cityBtns");
+                let buttonEl = document.createElement("button");
                 buttonEl.className = "cityBtn mw-100 resetBtn";
                 buttonEl.textContent= "Limit Reached: Reset Recent Cities?";
                 btnContainer.appendChild(buttonEl);
@@ -238,5 +233,7 @@ function btnClicks() {
     button = document.querySelectorAll(".searchBtn");
 }
 
+startUpBtns();
 
+$(button).on("click", search);
 
