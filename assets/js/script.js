@@ -5,8 +5,20 @@ let heading;
 let formatName;
 let saveArray = false;
 
+function startUpBtns() {
+    var btnContainer = document.querySelector("#cityBtns");
+    
+    for ( var i = 0; i < savedBtns.length; i++) {
+        var buttonEl = document.createElement("button");
+        buttonEl.className = "cityBtn searchBtn mw-100";
+        buttonEl.textContent = savedBtns[i].name;
+        var btnInput = JSON.stringify(savedBtns[i].input);
+        buttonEl.setAttribute("data-input", btnInput);
+        btnContainer.appendChild(buttonEl);
+    }
+    btnClicks();
+}
 
-// reset Button function when 10 searches reached
 function reset(event) {
     savedBtns = [];
     localStorage.setItem("Recent Searches", JSON.stringify(savedBtns));
