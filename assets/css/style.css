@@ -1,0 +1,44 @@
+body {
+    background-image: url('../images/weather-bg.svg');
+    font-family: 'Oswald', sans-serif;
+}
+
+.title {
+    margin-top: 50px;
+    font-size: 50px;
+}
+
+.search-div {
+    background-color: transparent;
+}
+
+.all-cards {
+    margin-bottom: 50px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-temp, .card-wind, .card-humid, .card-icon {
+    text-align: center;
+}
+
+.cityBtn {
+    margin-bottom: 10px;
+    background-color: rgb(71, 255, 215);
+    border-radius: 5px;
+    border: none;
+    
+}
+
+#cityBtns {
+    margin-top: 40px;
+}
+
+.searchBtnmain {
+    background-color: rgb(71, 212, 255);
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+}

@@ -8,19 +8,22 @@
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+        </style>
     <title>Weather Dashboard</title>
 </head>
 <body>
     <header>
-        <h1 class="d-flex justify-content-center">Weather Dashboard</h1>
+        <h1 class="d-flex justify-content-center title">Weather Dashboard</h1>
     </header>
     <main  class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-lg-3 no-float mt-2 px-2 w-100" id="input-box">
-                <div class="row d-flex flex-column px-4">
-                    <h2 class="card-header row">Search for a City</h2>
+                <div class="row d-flex flex-column px-4 search-div">
+                    <h2 class="card-header row search-div">Search for a City</h2>
                     <input class="w-100" form="text" id="city-input" placeholder="City Name">
-                    <button class="w-100 mb-1 searchBtn">Search</button>   
+                    <button class="w-100 mb-1 searchBtnmain">Search</button>   
                 </div>
                 <div class="row d-flex flex-column m-2" id="cityBtns">
                     
@@ -53,7 +56,7 @@
                 <div class="5-day row mt-3 mx-5 d-flex">
                     <h3 id="day5-heading">5-Day Forecast</h3>
                 </div>
-                <div class="day5 row m-0 d-flex justify-content-around">
+                <div class="day5 row m-0 d-flex justify-content-around all-cards">
                     <div class="card w-25 mt-3 mr-2 flex-fill p-3" id="day-1">
                         <h5 class="text-center card-weekday"></h5>
                         <h5 class="text-center card-date"></h5>

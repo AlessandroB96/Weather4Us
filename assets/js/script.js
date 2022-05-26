@@ -28,14 +28,11 @@ function reset(event) {
 
 function search(event) {
     let cityInput;
-    // If Recent Search Buttons selected, use their "Input" data, from savedBtns Input property
     if ($(this).text() !== "Search") {
         heading = $(this).text();
         cityInput = $(this).data("input");
 
-    // If Search button selected, use input field for City name
     } else {
-        // swap spaces with %20 for api call
         saveArray = true;
         heading = $("#city-input").val().toLowerCase();
         cityInput = $("#city-input").val().toLowerCase().replace(/\ /g, "%20");
