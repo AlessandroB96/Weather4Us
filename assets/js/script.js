@@ -13,8 +13,6 @@ function reset(event) {
     $(".cityBtn").remove();
 }
     
-
-
     // API call for lat and long of city
     fetch("https://api.myptv.com/geocoding/v1/locations/by-text?searchText=" + cityInput, {
         method: "GET",
@@ -35,7 +33,7 @@ function reset(event) {
         return result.locations[0].referencePosition;
     })
 
-    // API call for weather data
+    //weather data
     .then(function(data) {
         fetch(
             'https://api.openweathermap.org/data/2.5/onecall?lat=' + data.latitude + '&lon=' + data.longitude + '&exclude=minutely&appid=d3c47a1f177d224c8f7fe16686ddb65e'
@@ -45,6 +43,27 @@ function reset(event) {
         .then(console.log(data)) 
 
         })
+
+    //lat long
+    fetch("https://api.myptv.com/geocoding/v1/locations/by-text?searchText=" + cityInput, {
+        method: "GET",
+        headers: { apiKey: "Y2E4ODI1NGU1MjlhNGFmODllN2VhYTQ0NzM4ZWUzZDM6MjAwYmZlN2UtZWYzNi00ZDIyLTkzNjEtNjFiMGU2MmE4NGY3", "Content-Type": "application/json" },
+    })
+    .then(response => response.json())
+    .then(result => {
+
+        formatName = result.locations[0].formattedAddress;
+
+        // Check if recent Button already exists, Don't Save/Append if so
+        for (let i = 0; i < savedBtns.length; i++) {
+            let btnCheck = savedBtns[i].nameCheck;
+            if (btnCheck === formatName) {
+                saveArray = false;
+            }
+        }
+        return result.locations[0].referencePosition;
+    })
+
           
            
 function btnClicks() {
