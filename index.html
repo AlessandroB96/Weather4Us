@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1 class="d-flex justify-content-center">Weather Dashboard</h1>
+    </header>
+    <main  class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-lg-3 no-float mt-2 px-2 w-100" id="input-box">
+                <div class="row d-flex flex-column px-4">
+                    <h2 class="card-header row">Search for a City</h2>
+                    <input class="w-100" form="text" id="city-input" placeholder="City Name">
+                    <button class="w-100 mb-1 searchBtn">Search</button>   
+                </div>
+                <div class="row d-flex flex-column m-2" id="cityBtns">
+                    
+                </div>
+            </div>
+            <div class="col-12 col-lg-9 mt-2 w-100 px-0 px-lg-3 no-float" id="content-box">
+                <div class="dashboard p-4">
+                    <h2 id="city-name">
+
+                    </h2>
+                    <p id="date">
+                    
+                    </p> 
+                    
+                  
+                    <div class="row d-flex flex-column mx-5"id="city-info">
+                        <p class="mt-2 mb-1"> 
+                            <span id="city-temp"></span></p>
+                        <p class="my-1"> 
+                            <span id="city-wind"></span></p>
+                        <p class="my-1"> 
+                            <span id="city-humid"></span></p>
+                        <p class=""> 
+                            <button type="submit" disabled="Disabled" class="disabled px-1" id="uvBtn"></button></p>
+                        
+                    </div>
+                </div>
+
+                
+                <div class="5-day row mt-3 mx-5 d-flex">
+                    <h3 id="day5-heading">5-Day Forecast</h3>
+                </div>
+                <div class="day5 row m-0 d-flex justify-content-around">
+                    <div class="card w-25 mt-3 mr-2 flex-fill p-3" id="day-1">
+                        <h5 class="text-center card-weekday"></h5>
+                        <h5 class="text-center card-date"></h5>
+                        <p class="card-icon"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humid"></p>
+                    </div>
+                    <div class="card w-25 mt-3 mr-2 flex-fill p-3" id="day-2">
+                        <h5 class="text-center card-weekday"></h5>
+                        <h5 class="text-center card-date"></h5>
+                        <p class="card-icon"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humid"></p>
+                    </div>
+                    <div class="card w-25 mt-3 mr-2 flex-fill p-3" id="day-3">
+                        <h5 class="text-center card-weekday"></h5>
+                        <h5 class="text-center card-date"></h5>
+                        <p class="card-icon"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humid"></p>
+                    </div>
+                    <div class="card w-25 mt-3 mr-2 flex-fill p-3" id="day-4">
+                        <h5 class="text-center card-weekday"></h5>
+                        <h5 class="text-center card-date"></h5>
+                        <p class="card-icon"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humid"></p>
+                    </div>
+                    <div class="card w-25 mt-3 mr-2 flex-fill p-3" id="day-5">
+                        <h5 class="text-center card-weekday"></h5>
+                        <h5 class="text-center card-date"></h5>
+                        <p class="card-icon"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humid"></p>
+                    </div>
+                    <div class="w-25 mt-3 mr-2 flex-fill p-3 placeholder" id="day-5"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h3>☀️</h3>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
