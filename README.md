@@ -3,7 +3,7 @@ Using the OpenWeather One Call API to retrieve weather data for cities
 
 <br />
 
-<img src="./assets/images/readmepic.png" width="350" title="hover text">
+<img src="./assets/images/readmepic.png" width="550" title="hover text">
 
 ## Tools
 
